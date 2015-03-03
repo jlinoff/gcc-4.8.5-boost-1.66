@@ -9,4 +9,6 @@ To use it:
     $ cd 4.8.4
     $ make
 
-For more detailed information see http://joelinoff.com/blog/?p=1678
+For more detailed information see http://joelinoff.com/blog/?p=1678.
+
+Added a new test file in this version called src/LOCAL-TEST/test4.cc that has even more C++-11 constructs. It implements a simple randomized quicksort.
