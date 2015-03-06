@@ -792,26 +792,25 @@ auto insertionSort(vector<T>& a, size_t beg, size_t end) -> void
 template<typename T>
 auto partition(vector<T>& a, size_t beg, size_t end) -> size_t
 {
-  // Another try
+  // Randomly select the pivot using a uniform distribution.
   random_device rd;
   mt19937 mt(rd());
   uniform_int_distribution<size_t> dis(beg, end);
   auto idx = dis(mt);
-  while (idx != end) {
-    idx = dis(mt);
-  }
-  swap(a[idx], a[end]);
+  T pivot = a[idx];
+  swap(a[end], a[idx]); // reserve the end slot
 
-  T pivot = a[end];
-  size_t j = beg;
-  for(size_t i=beg; i<=end-1; ++i) {
-    if (a[i] < pivot) {
-      swap(a[i], a[j]);
-      ++j;
+  auto i = beg;
+  if (end > 0) {
+    for(auto j=beg; j<end; ++j) {  // up to end - 1
+      if (a[j] <= pivot) {
+        swap(a[i], a[j]);
+        ++i;
+      }
     }
   }
-  swap(a[end], a[j]);
-  return j;
+  swap(a[i], a[end]);
+  return i;
 }
 
 template <typename T, size_t M=32>
