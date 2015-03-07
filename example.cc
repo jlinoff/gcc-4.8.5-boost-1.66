@@ -34,12 +34,10 @@ auto partition(vector<T>& a, size_t beg, size_t end) -> size_t
   swap(a[end], a[idx]); // reserve the end slot
 
   auto i = beg;
-  if (end > 0) {
-    for(auto j=beg; j<end; ++j) {  // up to end - 1
-      if (a[j] <= pivot) {
-        swap(a[i], a[j]);
-        ++i;
-      }
+  for(auto j=beg; j<end; ++j) {  // up to end - 1
+    if (a[j] <= pivot) {
+      swap(a[i], a[j]);
+      ++i;
     }
   }
   swap(a[i], a[end]);
