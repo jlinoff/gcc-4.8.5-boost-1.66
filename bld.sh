@@ -4,7 +4,7 @@
 #
 # This downloads, builds and installs the gcc-4.8.4 compiler and boost
 # 1.57. It handles the dependent packages like gmp-6.0.0a, mpfr-3.1.2,
-# mpc-1.0.2, ppl-1.1, cloog-0.18.1 and binutils-2.24.
+# mpc-1.0.3, ppl-1.1, cloog-0.18.1 and binutils-2.24.
 #
 # To install gcc-4.8.4 in ~/tmp/gcc-4.8.4/rtf/bin you would run this
 # script as follows:
@@ -42,10 +42,10 @@
 # publish, distribute, sublicense, and/or sell copies of the Software,
 # and to permit persons to whom the Software is furnished to do so,
 # subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be
 # included in all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 # EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -152,7 +152,7 @@ function docmd_hdr {
     local ar=$1
     shift
     local cmd=($*)
-    echo 
+    echo
     echo " # ================================================================"
     if [[ "$ar" != "" ]] ; then
         echo " # Archive: $ar"
@@ -160,7 +160,7 @@ function docmd_hdr {
     echo " # PWD: "$(pwd)
     echo " # CMD: "${cmd[@]}
     echo " # ================================================================"
-}    
+}
 
 # ================================================================
 # Execute command with decorations and status testing.
@@ -313,7 +313,7 @@ ARS=(
     http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz
     https://gmplib.org/download/gmp/gmp-6.0.0a.tar.bz2
     http://mpfr.loria.fr/mpfr-3.1.2/mpfr-3.1.2.tar.bz2
-    http://www.multiprecision.org/mpc/download/mpc-1.0.2.tar.gz
+    https://ftp.gnu.org/gnu/mpc/mpc-1.0.3.tar.gz
     http://bugseng.com/products/ppl/download/ftp/releases/1.1/ppl-1.1.tar.bz2
     http://www.bastoul.net/cloog/pages/download/cloog-0.18.1.tar.gz
     http://ftp.gnu.org/gnu/gcc/gcc-4.8.4/gcc-4.8.4.tar.bz2
@@ -364,7 +364,7 @@ export LD_LIBRARY_PATH="${RTFDIR}/lib:${RTFDIR}/lib64:${LD_LIBRARY_PATH}"
 
 echo
 echo "# ================================================================"
-echo '# Version    : gcc-4.8.4 2015-03-01'
+echo '# Version    : gcc-4.8.4 2018-03-02'
 echo "# RootDir    : $ROOTDIR"
 echo "# ArchiveDir : $ARDIR"
 echo "# RtfDir     : $RTFDIR"
@@ -394,7 +394,7 @@ for ar in ${ARS[@]} ; do
         echo "INFO: already downloaded $fn"
     else
         # get
-        docmd $ar wget $ar -O "${ARDIR}/$fn"
+        docmd $ar curl -o $ARDIR/$fn $ar
     fi
 done
 
@@ -731,7 +731,7 @@ EOF
     docmd "LOCAL TEST 11" g++ -g -Wall -o test2.dbg test2.cc
     docmd "LOCAL TEST 12" ./test2.dbg
 
-    docmd "LOCAL TEST" ls -l 
+    docmd "LOCAL TEST" ls -l
 
     # Simple aliveness test for C++11.
     # Initializer lists, auto and foreach.
@@ -882,7 +882,7 @@ EOF
     docmd "LOCAL TEST 19" g++ -std=c++11 -g -Wall -o test4.dbg test4.cc
     docmd "LOCAL TEST 20" ./test4.dbg
 
-    docmd "LOCAL TEST" ls -l 
+    docmd "LOCAL TEST" ls -l
 
     popd
 fi
