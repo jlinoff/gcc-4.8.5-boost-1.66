@@ -1,12 +1,12 @@
-# gcc-4.8.4-boost-1.57
-Bash script and Makefile to install gcc 4.8.4 and boost 1.57 on CentOS and Mac OS X.
+# gcc-4.8.5-boost-1.66
+Bash script and Makefile to install gcc 4.8.5 and boost 1.66 on CentOS and Mac OS X.
 
 To use it:
 ```bash
 $ mkdir -p work/gcc
 $ cd work/gcc
-$ git clone https://github.com/jlinoff/gcc-4.8.4-boost-1.57.git 4.8.4
-$ cd 4.8.4
+$ git clone https://github.com/jlinoff/gcc-4.8.5-boost-1.66.git 4.8.5
+$ cd 4.8.5
 $ chmod a+x bld.sh
 $ make
 ```
@@ -14,7 +14,7 @@ To build and run the example do this:
 ```bash
 #!/bin/bash
 # Setup the environment.
-MY_GXX_HOME="~/work/gcc/4.8.4/rtf"
+MY_GXX_HOME="~/work/gcc/4.8.5/rtf"
 export PATH="${MY_GXX_HOME}/bin:${PATH}"
 export LD_LIBRARY_PATH="${MY_GXX_HOME}/lib:${MY_GXX_HOME}/lib64:${LD_LIBRARY_PATH}"
 export LD_RUN_PATH="${MY_GXX_HOME}/lib:${MY_GXX_HOME}/lib64:${LD_LIBRARY_PATH}"
