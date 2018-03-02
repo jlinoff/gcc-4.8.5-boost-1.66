@@ -1,24 +1,24 @@
 #!/bin/bash
 #
-# Date: 2015-03-01
+# Date: 2018-03-02
 #
-# This downloads, builds and installs the gcc-4.8.4 compiler and boost
+# This downloads, builds and installs the gcc-4.8.5 compiler and boost
 # 1.66. It handles the dependent packages like gmp-6.0.0a, mpfr-3.1.2,
 # mpc-1.0.3, ppl-1.1, cloog-0.18.1 and binutils-2.24.
 #
-# To install gcc-4.8.4 in ~/tmp/gcc-4.8.4/rtf/bin you would run this
+# To install gcc-4.8.5 in ~/tmp/gcc-4.8.5/rtf/bin you would run this
 # script as follows:
 #
-#    % # Install in ~/tmp/gcc-4.8.4/rtf/bin
-#    % bld.sh ~/tmp/gcc-4.8.4 2>&1 | tee bld.log
+#    % # Install in ~/tmp/gcc-4.8.5/rtf/bin
+#    % bld.sh ~/tmp/gcc-4.8.5 2>&1 | tee bld.log
 #
 # If you do not specify a directory, then it will install in the
 # current directory which means that following command will also
-# install in ~/tmp/gcc-4.8.4/rtf/bin:
+# install in ~/tmp/gcc-4.8.5/rtf/bin:
 #
-#    % # Install in ~/tmp/gcc-4.8.4/rtf/bin
-#    % mkdir -p ~/tmp/gcc-4.8.4
-#    % cd ~/tmp/gcc-4.8.4
+#    % # Install in ~/tmp/gcc-4.8.5/rtf/bin
+#    % mkdir -p ~/tmp/gcc-4.8.5
+#    % cd ~/tmp/gcc-4.8.5
 #    % bld.sh 2>&1 | tee bld.log
 #
 # This script creates 4 subdirectories:
@@ -316,7 +316,7 @@ ARS=(
     https://ftp.gnu.org/gnu/mpc/mpc-1.0.3.tar.gz
     http://bugseng.com/products/ppl/download/ftp/releases/1.1/ppl-1.1.tar.bz2
     http://www.bastoul.net/cloog/pages/download/cloog-0.18.1.tar.gz
-    http://ftp.gnu.org/gnu/gcc/gcc-4.8.4/gcc-4.8.4.tar.bz2
+    http://ftp.gnu.org/gnu/gcc/gcc-4.8.5/gcc-4.8.5.tar.bz2
     http://ftp.gnu.org/gnu/binutils/binutils-2.24.tar.bz2
     https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.tar.bz2
     #
@@ -364,7 +364,7 @@ export LD_LIBRARY_PATH="${RTFDIR}/lib:${RTFDIR}/lib64:${LD_LIBRARY_PATH}"
 
 echo
 echo "# ================================================================"
-echo '# Version    : gcc-4.8.4 2018-03-02'
+echo '# Version    : gcc-4.8.5 2018-03-02'
 echo "# RootDir    : $ROOTDIR"
 echo "# ArchiveDir : $ARDIR"
 echo "# RtfDir     : $RTFDIR"
@@ -621,7 +621,7 @@ for ar in ${ARS[@]} ; do
                                 awk \
 '{ \
   if($1=="namespace" && $2 == "std") { \
-    printf("// Automatically patched by bld.sh for gcc-4.8.4.\n"); \
+    printf("// Automatically patched by bld.sh for gcc-4.8.5.\n"); \
     printf("#define tininess_before tinyness_before\n"); \
     printf("#if __GNU_MP_VERSION < 5  || (__GNU_MP_VERSION == 5 && __GNU_MP_VERSION_MINOR < 1)\n");
   } \
