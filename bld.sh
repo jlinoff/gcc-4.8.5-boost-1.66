@@ -394,7 +394,8 @@ for ar in ${ARS[@]} ; do
         echo "INFO: already downloaded $fn"
     else
         # get
-        docmd $ar curl -o $ARDIR/$fn $ar
+        docmd $ar curl -L -o $ARDIR/$fn $ar
+        [ -z "$ar" ] && doerr "archive download failed: $ar." || true
     fi
 done
 
